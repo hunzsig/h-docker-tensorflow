@@ -9,10 +9,12 @@ networks:
 
 services:
   tensorflow:
+    container_name: tensorflow
     restart: always
     build: ./images/tensorflow
     volumes:
-      - ./etc/tensorflow:/notebooks
+      - ./etc/notebooks:/tf/notebooks
+      - ./etc/jupyter:/root/.jupyter
     ports:
       - ${PORT_TENSORFLOW}:8888
     networks:
