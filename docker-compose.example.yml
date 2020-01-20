@@ -1,0 +1,20 @@
+version: "3.3"
+
+networks:
+  tensorflow:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${NETWORK}
+
+services:
+  tensorflow:
+    restart: always
+    build: ./images/tensorflow
+    volumes:
+      - ./etc/tensorflow:/notebooks
+    ports:
+      - ${PORT_TENSORFLOW}:8888
+    networks:
+      tensorflow:
+        ipv4_address: ${NETWORK_TENSORFLOW}
